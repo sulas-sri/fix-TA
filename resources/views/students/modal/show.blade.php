@@ -10,10 +10,10 @@
 				@include('utilities.loading-alert')
 				<div class="row">
 					<div class="col-sm-12 col-md-12 col-lg-4">
-						<div class="mb-3">
+						{{-- <div class="mb-3">
 							<label for="student_identification_number" class="form-label">NIS/NISN/NIM</label>
 							<input type="text" class="form-control" id="student_identification_number" disabled>
-						</div>
+						</div> --}}
 					</div>
 					<div class="col-sm-12 col-md-12 col-lg-4">
 						<div class="mb-3">
@@ -34,12 +34,6 @@
 						<div class="mb-3">
 							<label for="school_class_id" class="form-label">Kelas</label>
 							<input type="text" class="form-control" id="school_class_id" disabled>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6">
-						<div class="mb-3">
-							<label for="school_major_id" class="form-label">Jurusan</label>
-							<input type="text" class="form-control" id="school_major_id" disabled>
 						</div>
 					</div>
 				</div>

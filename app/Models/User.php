@@ -54,7 +54,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function billings(): HasMany
     {
-        return $this->hasMany(Billing::class);
+        return $this->hasMany(Billing::class, 'user_id');
     }
 
     /**

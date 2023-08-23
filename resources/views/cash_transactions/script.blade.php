@@ -83,5 +83,68 @@
 				}
 			});
 		});
+
+		const checkbox = document.getElementById('lain_lain_checkbox');
+        const inputField = document.getElementById('lain_lain_value');
+        const hiddenInput = document.getElementById('lain_lain_hidden');
+
+        checkbox.addEventListener('change', function() {
+            inputField.disabled = !this.checked;
+            if (!this.checked) {
+                inputField.value = ''; // Clear input value when unchecked
+                hiddenInput.value = '';
+            }
+        });
+
+        inputField.addEventListener('input', function() {
+            hiddenInput.value = this.value;
+        });
+	});
+	
+	$('#filter').click(function () {
+			let start_date = $('#start_date').val();
+			let end_date = $('#end_date').val();
+
+			$.ajax({
+					url: "cashTransactions/filter", // Ganti dengan route yang sesuai untuk filter di halaman Data Pengeluaran
+					type: 'POST',
+					cache: false,
+					data: {
+							'start_date': start_date,
+							'end_date': end_date,
+							'_token' : '{{csrf_token()}}'
+					},
+					success: function (res) {
+							$('#datatable').DataTable().clear().destroy();
+							$('#datatable').DataTable({
+									data: res.data,
+									columns: [
+										{ data: 'DT_RowIndex', name: 'DT_RowIndex' },
+										{ data: 'students.name', name: 'students.name' },
+										{ data: 'amount', name: 'amount' },
+										{ data: 'category', name: 'category' },
+										{ data: 'date', name: 'date' },
+										{ data: 'action', name: 'action' },
+									]
+							});
+
+							Toastify({
+									text: "Berhasil mengambil data",
+									duration: 3000,
+									close: true,
+									backgroundColor: "#4fbe87",
+							}).showToast();
+					},
+					error: function () {
+						$('#datatable-wrap').css('display', 'none');
+
+                    Toastify({
+                        text: "Kesalahan internal!",
+                        duration: 3000,
+                        close: true,
+                        backgroundColor: "#f3616d",
+                    }).showToast()
+					}
+			});
 	});
 </script>

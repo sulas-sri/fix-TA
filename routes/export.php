@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Export\AdministratorController;
 use App\Http\Controllers\Export\StudentController;
 use App\Http\Controllers\Export\CashTransactionController;
+use App\Http\Controllers\Export\TransactionController;
 use App\Http\Controllers\Export\CashTransactionReportController;
 use App\Http\Controllers\Export\CetakKwitansiPDFController;
 
@@ -14,3 +15,4 @@ Route::get('/cash-transactions/export', CashTransactionController::class)->name(
 Route::get('/administrators/export', AdministratorController::class)->name('administrators.export');
 Route::get('/billings/export', BillingController::class)->name('billings.export');
 Route::get('/cetak-kwitansi/{id}', [CetakKwitansiPDFController::class, 'cetakKwitansi'])->name('cetak-kwitansi');
+Route::get('/transactions/export', TransactionController::class)->name('transactions.export');

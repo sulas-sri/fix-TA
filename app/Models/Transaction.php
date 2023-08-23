@@ -14,11 +14,9 @@ class Transaction extends Model
 
     // Kolom-kolom yang dapat diisi (mass assignable)
     protected $fillable = [
-        'type',
         'date',
         'description',
         'amount',
-        'user_id',
     ];
 
     // Relasi ke model User (jika ingin menghubungkan transaksi dengan user)

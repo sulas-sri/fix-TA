@@ -76,31 +76,6 @@
 							</div>
 						</div>
 
-						<div class="col-sm-6 col-md-6">
-							<div class="mb-3">
-								<label for="school_major_id" class="form-label">Status</label>
-								<select class="form-select select2" name="school_major_id" id="school_major_id">
-									<option value="" selected>Pilih Status</option>
-									{{-- <option value="active" {{ old('school_major_id') === "active" ? 'selected' : '' }}>Active</option>
-									<option value="inactive" {{ old('school_major_id') === "inactive" ? 'selected' : '' }}>Inactive</option> --}}
-									@foreach ($schoolMajors as $schoolMajor)
-									<option value="{{ $schoolMajor->id }}" {{ old('school_major_id')==="$schoolMajor->id" ? 'selected'
-										: '' }}>
-										{{ $schoolMajor->abbreviated_word }} -
-										{{ $schoolMajor->name }}
-									</option>
-									@endforeach
-								</select>
-
-								@error('school_major_id')
-								<div class="d-block invalid-feedback">
-									{{ $message }}
-								</div>
-								@enderror
-							</div>
-						</div>
-					</div>
-
 					<div class="row">
 						<div class="col-sm-6 col-md-6">
 							<div class="mb-3">

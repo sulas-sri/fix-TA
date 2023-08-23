@@ -49,20 +49,6 @@
 								</select>
 							</div>
 						</div>
-
-						<div class="col-sm-6 col-md-6">
-							<div class="mb-3">
-								<label for="school_major_id" class="form-label">Jurusan</label>
-								<select class="form-select" name="school_major_id" id="school_major_id">
-									<option selected>Pilih jurusan</option>
-									@foreach ($schoolMajors as $schoolMajor)
-									<option value="{{ $schoolMajor->id }}">{{ $schoolMajor->abbreviated_word }} -
-										{{ $schoolMajor->name }}
-									</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
 					</div>
 
 					<div class="row">

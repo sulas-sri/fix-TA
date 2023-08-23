@@ -22,7 +22,6 @@ class AdministratorFactory extends Factory
     public function definition()
     {
         return [
-            'id_transaksi' => mt_rand(1, 15),
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),

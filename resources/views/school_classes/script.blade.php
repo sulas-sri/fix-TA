@@ -13,29 +13,51 @@
 			]
 		});
 
-		$('#datatable').on('click', '.school-class-detail', function () {
-			loadingAlert.show();
+    $('#datatable').on('click', '.school-class-detail', function () {
+        let id = $(this).data('id');
+        let url = "{{ route('school-classes.show', ':param') }}"; // Menggunakan route show
+        url = url.replace(':param', id);
 
-			let id = $(this).data('id');
-			let url = "{{ route('api.school-class.show', ':param') }}";
-			url = url.replace(':param', id);
+        $('#showSchoolClassModal #name').val("Sedang mengambil data..");
 
-			$('#showSchoolClassModal :input').val("Sedang mengambil data..");
+        $.get({
+            url: url,
+            success: function (response) {
+                $('#showSchoolClassModal #name').val(response.schoolClass.name); // Ubah response.data.name menjadi response.schoolClass.name
+                $('#showSchoolClassModal').modal('show'); // Tampilkan modal
+            },
+            beforeSend: function () {
+                loadingAlert.show();
+            },
+            complete: function () {
+                loadingAlert.hide();
+            }
+        });
+    });
 
-			$.ajax({
-				url: url,
-				headers: {
-					'Authorization': 'Bearer ' + localStorage.getItem('token'),
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				success: function (response) {
-					loadingAlert.slideUp();
+		// $('#datatable').on('click', '.school-class-detail', function () {
+		// 	loadingAlert.show();
 
-					$('#showSchoolClassModal #name').val(response.data.name);
-				}
-			});
-		});
+		// 	let id = $(this).data('id');
+		// 	let url = "{{ route('api.school-class.show', ':param') }}";
+		// 	url = url.replace(':param', id);
+
+		// 	$('#showSchoolClassModal :input').val("Sedang mengambil data..");
+
+		// 	$.get({
+		// 		url: url,
+		// 		headers: {
+		// 			'Authorization': 'Bearer ' + localStorage.getItem('token'),
+		// 			'Accept': 'application/json',
+		// 			'Content-Type': 'application/json'
+		// 		},
+		// 		success: function (response) {
+		// 			loadingAlert.slideUp();
+
+		// 			$('#showSchoolClassModal #name').val(response.data.name);
+		// 		}
+		// 	});
+		// });
 
 		$('#datatable').on('click', '.school-class-edit', function () {
 			loadingAlert.show();

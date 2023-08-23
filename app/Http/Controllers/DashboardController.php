@@ -7,13 +7,17 @@ use App\Models\SchoolClass;
 use App\Models\SchoolMajor;
 use App\Models\Student;
 use App\Models\Transaction;
+use App\Repositories\CashTransactionReportRepository;
 use App\Repositories\CashTransactionRepository;
+use App\Repositories\ExpenseRepository;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
     public function __construct(
         private CashTransactionRepository $cashTransactionRepository,
+        private CashTransactionReportRepository $cashTransactionReportRepository,
+        private ExpenseRepository $expenseRepository,
     ) {
     }
 
@@ -24,23 +28,39 @@ class DashboardController extends Controller
      */
     public function __invoke(): View
     {
-        $incomeAmount = Transaction::where('type', 'income')->sum('amount');
-
-        // Menghitung jumlah pengeluaran
-        $expenseAmount = Transaction::where('type', 'expense')->sum('amount');
         $amountThisMonth = indonesianCurrency($this->cashTransactionRepository->sumAmountBy('month', month: date('m')));
+        $filteredResult = [];
+        $startDate = request()->get('start_date');
+        $endDate = request()->get('end_date');
 
-        // $latestCashTransactions = $this->cashTransactionRepository
-        //     ->cashTransactionLatest(['id', 'student_id', 'user_id', 'bill', 'amount', 'date'], 5);
+        if (request()->has('start_date') && request()->has('end_date')) {
+            if ($startDate === null && $endDate === null) {
+                return redirect()->back()->with('warning', 'Tanggal awal atau tanggal akhir tidak boleh kosong!');
+            }
+
+            $filteredResult = $this->cashTransactionReportRepository->filterByDateStartAndEnd($startDate, $endDate);
+        }
+
+        $sumIncome = [
+            'thisDay' => indonesianCurrency($this->cashTransactionReportRepository->sum('amount', 'thisDay')),
+            'thisWeek' => indonesianCurrency($this->cashTransactionReportRepository->sum('amount', 'thisWeek')),
+            'thisMonth' => indonesianCurrency($this->cashTransactionReportRepository->sum('amount', 'thisMonth')),
+            'thisYear' => indonesianCurrency($this->cashTransactionReportRepository->sum('amount', 'thisYear')),
+        ];
+
+        $sumExpense = [
+            'thisDay' => indonesianCurrency($this->expenseRepository->sum('amount', 'thisDay')),
+            'thisWeek' => indonesianCurrency($this->expenseRepository->sum('amount', 'thisWeek')),
+            'thisMonth' => indonesianCurrency($this->expenseRepository->sum('amount', 'thisMonth')),
+            'thisYear' => indonesianCurrency($this->expenseRepository->sum('amount', 'thisYear')),
+        ];
 
         return view('dashboard.index', [
             'studentCount' => Student::count(),
             'schoolClassCount' => SchoolClass::count(),
-            'incomeAmount' => Transaction::where('type', 'pemasukan')->sum('amount'),
-            'expenseAmount' => Transaction::where('type', 'pengeluaran')->sum('amount'),
-            // 'schoolMajorCount' => SchoolMajor::count(),
-            // 'amountThisMonth' => $amountThisMonth
-            // 'latestCashTransactions' => $latestCashTransactions
+            'sumIncome' => $sumIncome,
+            'sumExpense' => $sumExpense,
+            'filteredResult' => $filteredResult
         ]);
     }
 }

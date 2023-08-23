@@ -14,8 +14,8 @@ class StudentController extends Controller implements APIInterface
 {
     public function show(int $id): JsonResponse
     {
-        $student = new StudentShowResource(Student::with('school_class:id,name', 'school_major:id,name')->findOrFail($id));
-
+        $student = new StudentShowResource(Student::with('school_class:id,name')->findOrFail($id));
+        dd($student);
         return response()->json([
             'code' => Response::HTTP_OK,
             'data' => $student
@@ -24,7 +24,7 @@ class StudentController extends Controller implements APIInterface
 
     public function edit(int $id): JsonResponse
     {
-        $student = new StudentEditResource(Student::with('school_class:id,name', 'school_major:id,name')->findOrFail($id));
+        $student = new StudentEditResource(Student::with('school_class:id,name')->findOrFail($id));
 
         return response()->json([
             'code' => Response::HTTP_OK,

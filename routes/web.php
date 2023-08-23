@@ -19,6 +19,7 @@ use App\Http\Controllers\TransactionController;
 use App\Models\Transaction;
 use Telegram\Bot\Api;
 use App\Http\Controllers\RiwayatPembayaranController;
+use App\Models\CashTransaction;
 
 require __DIR__ . '/auth.php';
 
@@ -30,14 +31,22 @@ Route::middleware(['auth', 'redirectNonAdmin'])->group(function () {
 
     Route::resource('students', StudentController::class)->except(
         'create',
-        'show',
-        'edit'
+        // 'show',
+        // 'edit'
     );
+    Route::get('detail-siswa/{id}', [StudentController::class, 'show']);
+    Route::get('edit-siswa/{id}', [StudentController::class, 'edit']);
+    Route::patch('students/{id}', [StudentController::class, 'update'])->name('students.update');
+    Route::get('school-classes/{school_class}', 'SchoolClassController@show')->name('school-classes.show');
     Route::resource('school-classes', SchoolClassController::class)->except(
         'create',
-        'show',
-        'edit'
+        // 'edit',
+        // 'show' // Excluding the 'show' route from the resource routes.
     );
+    Route::get('detail-kelas/{id}', [SchoolClassController::class, 'show']);
+    Route::get('edit-kelas/{id}', [SchoolClassController::class, 'edit']);
+    Route::patch('school-classes/{id}', [SchoolClassController::class, 'update'])->name('school-classes.update');
+
     Route::resource('school-majors', SchoolMajorController::class)->except(
         'create',
         'show',
@@ -61,6 +70,7 @@ Route::middleware(['auth', 'redirectNonAdmin'])->group(function () {
         'edit',
         'destroy'
     );
+
     Route::post('/billings/{billing}/send-notification', [
         BillingController::class,
         'sendNotification',
@@ -79,9 +89,16 @@ Route::middleware(['auth', 'redirectNonAdmin'])->group(function () {
         CashTransactionController::class
     )->except('create', 'show', 'edit');
 
+    Route::get('detail-pembayaran/{id}', [CashTransactionController::class, 'show']);
+    Route::get('edit-pembayaran/{id}', [CashTransactionController::class, 'edit']);
+    Route::patch('cash-transactions/{id}', [CashTransactionController::class, 'update'])->name('cash-transactions.update');
+
+    Route::get('/report', CashTransactionReportController::class)->name(
+        'cash_transactions.index'
+    );
     //  Report routes
     Route::get('/report', CashTransactionReportController::class)->name(
-        'report.index'
+        'cash_transactions.index'
     );
     // End of report routes
 
@@ -165,6 +182,14 @@ Route::middleware(['auth', 'redirectNonAdmin'])->group(function () {
         TransactionController::class,
         'destroy',
     ])->name('transactions.destroy');
+    Route::get('detail-pengeluaran/{id}', [TransactionController::class, 'show']);
+    Route::get('edit-pengeluaran/{id}', [TransactionController::class, 'edit']);
+    Route::patch('transactions/{id}', [TransactionController::class, 'update'])->name('transactions.update');
+
+    // Route::post('/filter', [TransactionController::class, 'filter'])->name('transactions.filter');
+    Route::post('transactions/filter', [TransactionController::class, 'filter'] )->name('transactions.filter');
+    Route::post('cashTransactions/filter', [CashTransactionController::class, 'filter'] )->name('cashTransactions.filter');
+
 
     // Rute untuk fungsi-fungsi lain yang ada di HeadmasterController
     Route::resource('headmasters', HeadmasterController::class)->except(
@@ -189,11 +214,28 @@ Route::middleware(['auth', 'redirectNonAdmin'])->group(function () {
 Route::get('/riwayat-pembayaran', [
     RiwayatPembayaranController::class,
     'showHistory',
-])->name('siswa.riwayat_pembayaran');
+])->name('siswa.riwayat_pembayaran')->middleware('auth');
 Route::get('/tagihan', [
     RiwayatPembayaranController::class,
     'showTagihan',
-])->name('siswa.tagihan');
+])->name('siswa.tagihan')->middleware('auth');
+
+
+// Route::get('/payment/{billing}', [
+//     RiwayatPembayaranController::class,
+//     'showPayment'])->name('siswa.payment');
+
+// Route::middleware(['auth', 'role:siswa'])->group(function () {
+//     Route::get('/riwayat-pembayaran', [
+//         RiwayatPembayaranController::class,
+//         'showHistory',
+//     ])->name('siswa.riwayat_pembayaran');
+
+//     Route::get('/tagihan', [
+//         RiwayatPembayaranController::class,
+//         'showTagihan',
+//     ])->name('siswa.tagihan');
+// });
 
 // Route::middleware('auth', 'kepala.sekolah')->group(function () {
 //     // Tambahkan route-route yang ingin dibatasi aksesnya untuk "Kepala Sekolah" di sini

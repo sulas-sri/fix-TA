@@ -108,24 +108,16 @@
 									<label for="category_ekstrakurikuler">Ekstrakurikuler</label>
 								</div>
 								<div>
-									<input type="checkbox" name="category[]" value="Lain Lain" id="category_lainLain"
-											{{ in_array('Lain Lain', old('category', [])) ? 'checked' : '' }}>
-									<label for="category_lainLain">Lain Lain</label>
-									<input type="text" name="lain_lain_value" value="{{ old('lain_lain_value') }}" placeholder="Input Lain Lain"
-									{{ in_array('Lain Lain', old('category', [])) ? '' : 'disabled' }}>
+									<input type="checkbox" name="lain_lain_checkbox" id="lain_lain_checkbox">
+									<label for="lain_lain_checkbox">Lain Lain</label>
+									<input type="text" name="lain_lain_value" id="lain_lain_value" value="{{ old('lain_lain_value') }}"
+											placeholder="Input Lain Lain" disabled>
+									<input type="hidden" name="lain_lain_hidden" id="lain_lain_hidden" value="{{ old('lain_lain_hidden') }}">
 								</div>
-								{{-- <select class="form-select @error('kategori_tagihan') is-invalid @enderror" name="kategori_tagihan">
-										<option value="" selected disabled>Pilih Kategori Tagihan</option>
-										<option value="SPP" {{ old('kategori_tagihan') == 'SPP' ? 'selected' : '' }}>SPP</option>
-										<option value="Tabungan" {{ old('kategori_tagihan') == 'Tabungan' ? 'selected' : '' }}>Tabungan</option>
-										<option value="Catering" {{ old('kategori_tagihan') == 'Catering' ? 'selected' : '' }}>Catering</option>
-										<option value="Antar Jemput" {{ old('kategori_tagihan') == 'Antar Jemput' ? 'selected' : '' }}>Antar Jemput</option>
-										<option value="Angsuran TA" {{ old('kategori_tagihan') == 'Angsuran TA' ? 'selected' : '' }}>Angsuran TA</option>
-										<option value="Komite" {{ old('kategori_tagihan') == 'Komite' ? 'selected' : '' }}>Komite</option>
-										<option value="Buku Mapel" {{ old('kategori_tagihan') == 'Buku Mapel' ? 'selected' : '' }}>Buku Mapel</option>
-										<option value="Ekstrakurikuler" {{ old('kategori_tagihan') == 'Ekstrakurikuler' ? 'selected' : '' }}>Ekstrakurikuler</option>
-										<option value="Lain lain" {{ old('kategori_tagihan') == 'Lain lain' ? 'selected' : '' }}>Lain lain</option>
-								</select> --}}
+
+								@if (old('lain_lain_hidden'))
+								<p>Data Lain-Lain: {{ old('lain_lain_hidden') }}</p>
+								@endif
 								@error('category')
 										<div class="d-block invalid-feedback">
 												{{ $message }}

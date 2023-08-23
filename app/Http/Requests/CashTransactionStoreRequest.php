@@ -23,15 +23,25 @@ class CashTransactionStoreRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'student_id' => ['required'],
             'amount' => ['required', 'integer', 'digits_between:3,191'],
-            'category' => 'required|array', // Memastikan category merupakan array
-            'category.*' => 'string', // Memastikan setiap elemen dalam array adalah string
             'date' => ['required', 'date'],
             'note' => ['max:191']
         ];
+
+        // Cek apakah "Lain-Lain" dipilih
+        if (in_array('Lain Lain', $this->input('category', []))) {
+            // Jika "Lain-Lain" dipilih, maka category.* (setiap elemen dalam array) menjadi opsional
+            $rules['category.*'] = 'nullable|string';
+        } else {
+            // Jika tidak, maka category.* (setiap elemen dalam array) tetap harus ada
+            $rules['category.*'] = 'required|string';
+        }
+
+        return $rules;
     }
+
 
     /**
      * Get the error messages for the defined validation rules.

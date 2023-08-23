@@ -12,7 +12,7 @@ class CashTransaction extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['student_id', 'amount', 'category', 'is_paid', 'date'];
+    protected $fillable = ['user_id','student_id', 'amount', 'category', 'is_paid', 'date'];
 
     protected $casts = [
         'is_paid' => 'integer',

@@ -16,15 +16,7 @@ class SchoolClassSeeder extends Seeder
     {
         for ($i = 1; $i <= 4; $i++) {
             SchoolClass::create([
-                'name' => 'X TKJ ' . $i
-            ]);
-
-            SchoolClass::create([
-                'name' => 'X RPL ' . $i
-            ]);
-
-            SchoolClass::create([
-                'name' => 'X MM ' . $i
+                'name' => 'Kelas ' . $i
             ]);
         }
     }

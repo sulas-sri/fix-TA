@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SchoolClassStoreRequest;
 use App\Http\Requests\SchoolClassUpdateRequest;
+use App\Http\Resources\SchoolClassShowResource;
 use App\Models\SchoolClass;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -75,5 +76,18 @@ class SchoolClassController extends Controller
         $schoolClass->delete();
 
         return redirect()->route('school-classes.index')->with('success', 'Data berhasil dihapus!');
+    }
+
+    public function show($id)
+    {
+        $schoolClass = SchoolClass::find($id);
+
+        return view ('school_classes.show', compact('schoolClass'));
+    }
+
+    public function edit($id)
+    {
+        $schoolClass = SchoolClass::find($id);
+        return view('school_classes.edit', compact('schoolClass'));
     }
 }

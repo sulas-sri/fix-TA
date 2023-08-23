@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Student;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -35,10 +36,10 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Create a new user instance
         $admin = User::create([
-            'id_transaksi' => 1,
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
-            'password' => bcrypt('secret'),
+            // 'user_id' => 2,
+            'name' => 'Administrator',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin'),
         ]);
 
         // Assign the 'admin' role to the user
@@ -46,7 +47,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Create a new user instance
         $head = User::create([
-            'id_transaksi' => 2,
+            // 'user_id' => 3,
             'name' => 'Headmaster',
             'email' => 'head@gmail.com',
             'password' => bcrypt('headmaster'),
@@ -56,15 +57,26 @@ class RolesAndPermissionsSeeder extends Seeder
         $head->assignRole('headmaster');
 
         // Create a new user instance
-        $student = User::create([
-            'id_transaksi' => 3,
-            'name' => 'Sulas Sri',
-            'email' => 'sulas@gmail.com',
-            'password' => bcrypt('secret'),
+        $student = Student::create([
+            // 'user_id' => 4,
+            'school_class_id' => 1,
+            'student_identification_number' => '00420422',
+            'name' => 'Tini Haryanti',
+            'email' => 'tini@gmail.com',
+            'phone_number' => '083856813888',
+            'gender' => 2,
+            'school_year_start' => '2020',
+            'school_year_end' => '2023'
+        ]);
+
+        $studentUser = User::create([
+            'name' => $student->name,
+            'email' => $student->email,
+            'password' => bcrypt('password'), // Ganti dengan password yang sesuai
         ]);
 
         // Assign the 'admin' role to the user
-        $student->assignRole('siswa');
+        $studentUser->assignRole('siswa');
 
     }
 }

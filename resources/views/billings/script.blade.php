@@ -82,6 +82,22 @@
 							}
 					});
 			});
+			const checkbox = document.getElementById('lain_lain_checkbox');
+        const inputField = document.getElementById('lain_lain_value');
+        const hiddenInput = document.getElementById('lain_lain_hidden');
+
+        checkbox.addEventListener('change', function() {
+            inputField.disabled = !this.checked;
+            if (!this.checked) {
+                inputField.value = ''; // Clear input value when unchecked
+                hiddenInput.value = '';
+            }
+        });
+
+        inputField.addEventListener('input', function() {
+            hiddenInput.value = this.value;
+        });
+	});
 
 		// 	$('#datatable').on('click', '.send-notification', function () {
     //     let id = $(this).data('id');
@@ -102,5 +118,5 @@
     //         }
     //     });
     // });
-	});
+
 </script>

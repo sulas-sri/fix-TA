@@ -47,6 +47,12 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        // Tambahkan guard 'siswa'
+        // 'siswa' => [
+        //     'driver' => 'session',
+        //     'provider' => 'siswa', // Nama provider yang Anda gunakan untuk siswa
+        // ],
     ],
 
     /*
@@ -71,6 +77,12 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+
+        // Tambahkan provider 'siswa'
+        // 'siswa' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\User::class, // Ganti dengan model siswa yang Anda gunakan
+        // ],
 
         // 'headmasters' => [
         //     'driver' => 'eloquent',

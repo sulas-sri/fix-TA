@@ -19,10 +19,11 @@ class CreateBillingsTable extends Migration
             $table->foreignId('student_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();;
             // $table->string('name');
             $table->string('id_telegram')->nullable();
-            $table->decimal('bill', 8, 2);
+            $table->bigInteger('bill');
             $table->string('kategori_tagihan');
             // $table->date('due_date');
             $table->date('date');
+            $table->enum('status', ['Unpaid', 'Paid']);
             $table->softDeletes();
             $table->timestamps();
         });

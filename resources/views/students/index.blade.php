@@ -48,11 +48,11 @@
 			<div class="btn-group d-gap gap-2">
 				<a href="{{ route('students.export') }}" class="btn btn-success">
 					<i class="bi bi-file-earmark-excel-fill"></i>
-					Export Excel
+					Cetak Data
 				</a>
-				<a href="{{ route('students.index.history') }}" class="btn btn-secondary">
+				{{-- <a href="{{ route('students.index.history') }}" class="btn btn-secondary">
 					<span class="badge">{{ $studentTrashedCount }}</span> Histori Data Pelajar
-				</a>
+				</a> --}}
 				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudentModal">
 					<i class="bi bi-plus-circle"></i> Tambah Data
 				</button>
@@ -67,7 +67,6 @@
 						<th scope="col">NIS</th>
 						<th scope="col">Nama Lengkap</th>
 						<th scope="col">Kelas</th>
-						<th scope="col">Status</th>
 						<th scope="col">TA</th>
 						<th scope="col">Aksi</th>
 					</tr>

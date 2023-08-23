@@ -13,11 +13,13 @@ class Billing extends Model
     use SoftDeletes, Notifiable;
 
     protected $fillable = [
+        'user_id',
         'student_id',
         'id_telegram',
         'bill',
         'kategori_tagihan',
         'date',
+        'status',
     ];
 
     protected $dates = ['deleted_at'];

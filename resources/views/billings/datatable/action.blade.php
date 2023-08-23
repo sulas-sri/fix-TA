@@ -8,7 +8,7 @@
 		</form>
 	</div>
 
-	<div class="mx-1">
+	{{-- <div class="mx-1">
 			<button type="button" data-id="{{ $model->id }}" class="btn btn-primary btn-sm billing-detail"
 					data-bs-toggle="modal" data-bs-target="#showBillingModal">
 					<i class="bi bi-search"></i>
@@ -20,7 +20,7 @@
 					data-bs-toggle="modal" data-bs-target="#editBillingModal">
 					<i class="bi bi-pencil-square"></i>
 			</button>
-	</div>
+	</div> --}}
 
 	<div class="mx-1">
 			<form action="{{ route('billings.destroy', $model->id) }}" method="POST">

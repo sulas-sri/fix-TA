@@ -4,10 +4,10 @@
 <section class="row">
 	<div class="col-12 col-lg-12">
 		<div class="row">
-			<div class="col-6 col-lg-3 col-md-6">
+			<div class="col-6 col-lg-6 col-md-6">
 				<a href="{{ route('students.index') }}">
 					<div class="card card-stat">
-						<div class="px-3 card-body py-4-5">
+						<div class="card-body px-3 py-4-4">
 							<div class="row">
 								<div class="col-md-4">
 									<div class="stats-icon purple">
@@ -25,10 +25,10 @@
 					</div>
 				</a>
 			</div>
-			<div class="col-6 col-lg-3 col-md-6">
+			<div class="col-6 col-lg-6 col-md-6">
 				<a href="{{ route('school-classes.index') }}">
 					<div class="card card-stat">
-						<div class="px-3 card-body py-4-5">
+						<div class="card-body px-3 py-4-4">
 							<div class="row">
 								<div class="col-md-4">
 									<div class="stats-icon blue">
@@ -46,7 +46,179 @@
 					</div>
 				</a>
 			</div>
-			<div class="col-6 col-lg-3 col-md-6">
+		</div>
+
+			<h5>Pemasukan</h5>
+			<div class="row">
+				<div class="col-6 col-lg-6 col-md-6">
+					<div class="card">
+						<div class="card-body px-3 py-4-4">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="stats-icon">
+										<i class="iconly-boldChart"></i>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<h6 class="text-muted font-semibold">Total Pemasukan Hari Ini</h6>
+									<h6 class="font-extrabold mb-0">
+										{{ $sumIncome['thisDay'] }}
+									</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-6 col-lg-6 col-md-6">
+					<div class="card">
+						<div class="card-body px-3 py-4-4">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="stats-icon">
+										<i class="iconly-boldChart"></i>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<h6 class="text-muted font-semibold">Total Pemasukan Minggu Ini</h6>
+									<h6 class="font-extrabold mb-0">
+										{{ $sumIncome['thisWeek'] }}
+									</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-6 col-lg-6 col-md-6">
+					<div class="card">
+						<div class="card-body px-3 py-4-4">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="stats-icon">
+										<i class="iconly-boldChart"></i>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<h6 class="text-muted font-semibold">Total Pemasukan Bulan Ini</h6>
+									<h6 class="font-extrabold mb-0">
+										{{ $sumIncome['thisMonth'] }}
+									</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-6 col-lg-6 col-md-6">
+					<div class="card">
+						<div class="card-body px-3 py-4-4">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="stats-icon">
+										<i class="iconly-boldChart"></i>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<h6 class="text-muted font-semibold">Total Pemasukan Tahun Ini</h6>
+									<h6 class="font-extrabold mb-0">
+										{{ $sumIncome['thisYear'] }}
+									</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h5>Pengeluaran</h5>
+			<div class="row">
+				<div class="col-6 col-lg-6 col-md-6">
+					<div class="card">
+						<div class="card-body px-3 py-4-4">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="stats-icon">
+										<i class="iconly-boldChart"></i>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<h6 class="text-muted font-semibold">Total Pengeluaran Hari Ini</h6>
+									<h6 class="font-extrabold mb-0">
+										{{ $sumExpense['thisDay'] }}
+									</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-6 col-lg-6 col-md-6">
+					<div class="card">
+						<div class="card-body px-3 py-4-4">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="stats-icon">
+										<i class="iconly-boldChart"></i>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<h6 class="text-muted font-semibold">Total Pengeluaran Minggu Ini</h6>
+									<h6 class="font-extrabold mb-0">
+										{{ $sumExpense['thisWeek'] }}
+									</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-6 col-lg-6 col-md-6">
+					<div class="card">
+						<div class="card-body px-3 py-4-4">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="stats-icon">
+										<i class="iconly-boldChart"></i>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<h6 class="text-muted font-semibold">Total Pengeluaran Bulan Ini</h6>
+									<h6 class="font-extrabold mb-0">
+										{{ $sumExpense['thisMonth'] }}
+									</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-6 col-lg-6 col-md-6">
+					<div class="card">
+						<div class="card-body px-3 py-4-4">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="stats-icon">
+										<i class="iconly-boldChart"></i>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<h6 class="text-muted font-semibold">Total Pengeluaran Tahun Ini</h6>
+									<h6 class="font-extrabold mb-0">
+										{{ $sumExpense['thisYear'] }}
+									</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{{-- <div class="col-6 col-lg-3 col-md-6">
 				<a href="{{ route('transactions.index') }}">
 					<div class="card card-stat">
 						<div class="px-3 card-body py-4-5">
@@ -66,8 +238,8 @@
 						</div>
 					</div>
 				</a>
-			</div>
-			<div class="col-6 col-lg-3 col-md-6">
+			</div> --}}
+			{{-- <div class="col-6 col-lg-3 col-md-6">
 				<a href="{{ route('transactions.index') }}">
 					<div class="card card-stat">
 						<div class="px-3 card-body py-4-5">
@@ -85,9 +257,9 @@
 						</div>
 					</div>
 				</a>
-			</div>
-		</div>
-		@include('dashboard.charts.chart')
+			</div> --}}
+
+		{{-- @include('dashboard.charts.chart') --}}
 		{{-- <div class="row">
 			<div class="col-12 col-xl-12">
 				<div class="card">

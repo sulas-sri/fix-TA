@@ -40,9 +40,9 @@
 					@foreach ($cash_transactions as $transaction)
 					<tr>
 							<td>{{ $loop->iteration }}</td>
-							<td>{{ $transaction->student->name }}</td>
-							<td>{{ $transaction->student->school_class_id }}</td>
-							<td>{{ $transaction->category }}</td>
+							<td>{{ $transaction->students->name }}</td>
+							<td>{{ $transaction->students->school_class->name }}</td>
+							<td>{{ $transaction->category[0] }}</td>
 							<td>{{ $transaction->amount }}</td>
 							<td>{{ $transaction->date }}</td>
 					</tr>

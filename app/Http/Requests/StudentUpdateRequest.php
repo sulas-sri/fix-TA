@@ -24,11 +24,10 @@ class StudentUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'student_identification_number' => ['required', 'min:3', 'max:191'],
+            // 'student_identification_number' => ['required', 'min:3', 'max:191'],
             'name' => ['required', 'min:3', 'max:191'],
-            'gender' => ['required'],
+            // 'gender' => ['required'],
             'school_class_id' => ['required'],
-            'school_major_id' => ['required'],
             'email' => ['required', 'email', 'max:191'],
             'phone_number' => ['required', 'min:3', 'max:191'],
             'school_year_start' => ['required'],
@@ -44,19 +43,18 @@ class StudentUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'student_identification_number.required' => 'Kolom nis/nisn wajib diisi!',
-            'student_identification_number.min' => 'Kolom nis/nisn minimal :min karakter!',
-            'student_identification_number.max' => 'Kolom nis/nisn maksimal :max karakter!!',
+            // 'student_identification_number.required' => 'Kolom nis/nisn wajib diisi!',
+            // 'student_identification_number.min' => 'Kolom nis/nisn minimal :min karakter!',
+            // 'student_identification_number.max' => 'Kolom nis/nisn maksimal :max karakter!!',
 
             'name.required' => 'Kolom nama lengkap wajib diisi!',
             'name.min' => 'Kolom nama lengkap minimal :min karakter!',
             'name.max' => 'Kolom nama lengkap maksimal :max karakter!!',
 
-            'gender.required' => 'Kolom jenis kelamin wajib diisi!',
+            // 'gender.required' => 'Kolom jenis kelamin wajib diisi!',
 
             'school_class_id.required' => 'Kolom kelas wajib diisi!',
 
-            'school_major_id.required' => 'Kolom jurusan wajib diisi!',
 
             'email.required' => 'Kolom email wajib diisi!',
             'email.email' => 'Kolom email harus email yang valid!',

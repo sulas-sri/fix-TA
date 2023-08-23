@@ -17,7 +17,6 @@ class StudentEditResource extends JsonResource
         return [
             'id' => $this->id,
             'school_class_id' => $this->school_class_id,
-            'school_major_id' => $this->school_major_id,
             'student_identification_number' => $this->student_identification_number,
             'name' => $this->name,
             'gender' => $this->gender,
@@ -28,10 +27,6 @@ class StudentEditResource extends JsonResource
             'school_classes' => [
                 'id' => $this->school_class->id,
                 'name' => $this->school_class->name
-            ],
-            'school_majors' => [
-                'id' => $this->school_major->id,
-                'name' => $this->school_major->name
             ],
         ];
     }

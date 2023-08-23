@@ -28,7 +28,6 @@ class StudentStoreRequest extends FormRequest
             'name' => ['required', 'min:3', 'max:191'],
             'gender' => ['required'],
             'school_class_id' => ['required'],
-            'school_major_id' => ['required'],
             'email' => ['required', 'email', 'max:191'],
             'phone_number' => ['required', 'min:3', 'max:191'],
             'school_year_start' => ['required'],
@@ -55,8 +54,6 @@ class StudentStoreRequest extends FormRequest
             'gender.required' => 'Kolom jenis kelamin wajib diisi!',
 
             'school_class_id.required' => 'Kolom kelas wajib diisi!',
-
-            'school_major_id.required' => 'Kolom jurusan wajib diisi!',
 
             'email.required' => 'Kolom email wajib diisi!',
             'email.email' => 'Kolom email harus email yang valid!',

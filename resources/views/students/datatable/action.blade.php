@@ -1,16 +1,14 @@
 <div class="btn-group" role="group">
-    <div class="mx-1">
-        <button type="button" data-id="{{ $model->id }}" class="btn btn-primary btn-sm student-detail"
-            data-bs-toggle="modal" data-bs-target="#showStudentModal">
-            <i class="bi bi-search"></i>
-        </button>
-    </div>
+		<div class="mx-1">
+			<a href="/detail-siswa/{{ $model->id }}" class="btn btn-primary btn-sm">
+				<i class="bi bi-search"></i>
+			</a>
+		</div>
 
     <div class="mx-1">
-        <button type="button" data-id="{{ $model->id }}" class="btn btn-success btn-sm student-edit"
-            data-bs-toggle="modal" data-bs-target="#editStudentModal">
-            <i class="bi bi-pencil-square"></i>
-        </button>
+			<a href="/edit-siswa/{{ $model->id }}" class="btn btn-success btn-sm">
+				<i class="bi bi-pencil-square"></i>
+			</a>
     </div>
 
     <div class="mx-1">

@@ -12,7 +12,7 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class CashTransactionController extends Controller implements ExcelExportInterface
 {
-    const FILE_NAME = 'laporan-kas';
+    const FILE_NAME = 'laporan-pemasukan';
 
     public function __invoke()
     {
@@ -20,8 +20,8 @@ class CashTransactionController extends Controller implements ExcelExportInterfa
         $sheet = $this->setExcelHeader($spreadsheet);
 
         $cash_transactions = CashTransaction::with('students:id,name')
-            ->select('id', 'student_id', 'bill', 'amount', 'date')
-            ->whereBetween('date', [now()->startOfWeek()->format('Y-m-d'), now()->endOfWeek()->format('Y-m-d')])
+            ->select('id', 'student_id', 'amount', 'category', 'date')
+            // ->whereBetween('date', [now()->startOfWeek()->format('Y-m-d'), now()->endOfWeek()->format('Y-m-d')])
             ->latest()
             ->get();
 
@@ -41,8 +41,8 @@ class CashTransactionController extends Controller implements ExcelExportInterfa
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setCellValue('A1', 'No');
         $sheet->setCellValue('B1', 'Nama Pelajar');
-        $sheet->setCellValue('C1', 'Tagihan');
-        $sheet->setCellValue('D1', 'Total Bayar');
+        $sheet->setCellValue('C1', 'Total Bayar');
+        $sheet->setCellValue('D1', 'Kategori Bayar');
         $sheet->setCellValue('E1', 'Tanggal');
 
         foreach (range('A', 'E') as $paragraph) {
@@ -65,19 +65,20 @@ class CashTransactionController extends Controller implements ExcelExportInterfa
         foreach ($cash_transactions as $key => $row) {
             $sheet->setCellValue('A' . $cell, $key + 1);
             $sheet->setCellValue('B' . $cell, $row->students->name);
-            $sheet->setCellValue('C' . $cell, $row->bill);
-            $sheet->setCellValue('D' . $cell, $row->amount);
+            $sheet->setCellValue('C' . $cell, $row->amount);
+            $categoryString = implode(', ', $row->category);
+            $sheet->setCellValue('D' . $cell, $categoryString);
             $sheet->setCellValue('E' . $cell, date('d-m-Y', strtotime($row->date)));
             $sheet->getStyle('A1:E' . $cell)->applyFromArray(ExportRepository::setStyle());
             $cell++;
         }
 
-        $sheet->setCellValue('C' . $cell, 'Jumlah');
-        $sheet->setCellValue('D' . $cell, $cash_transactions->sum('amount'));
+        $sheet->setCellValue('B' . $cell, 'Jumlah');
+        $sheet->setCellValue('C' . $cell, $cash_transactions->sum('amount'));
+        $sheet->getStyle('B' . $cell)->applyFromArray(ExportRepository::setStyle());
         $sheet->getStyle('C' . $cell)->applyFromArray(ExportRepository::setStyle());
-        $sheet->getStyle('D' . $cell)->applyFromArray(ExportRepository::setStyle());
+        $sheet->getColumnDimension('B')->setAutoSize(true);
         $sheet->getColumnDimension('C')->setAutoSize(true);
-        $sheet->getColumnDimension('D')->setAutoSize(true);
 
         return $sheet;
     }

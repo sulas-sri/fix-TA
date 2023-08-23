@@ -13,15 +13,27 @@ class BillingStoreRequest extends FormRequest
 
     public function rules()
     {
-        return [
+
+        $rules = [
             'student_id' => 'required|array',
             'student_id.*' => 'required|exists:students,id',
             'id_telegram' => 'required|string|max:15',
             'bill' => 'required|numeric|min:0',
             // 'date' => 'required|date',
-            'kategori_tagihan' => 'nullable|string|max:255',
         ];
+
+        // Cek apakah "Lain-Lain" dipilih
+        if (in_array('Lain Lain', $this->input('kategori_tagihan', []))) {
+            // Jika "Lain-Lain" dipilih, maka kategory_tagihan.* (setiap elemen dalam array) menjadi opsional
+            $rules['kategory_tagihan.*'] = 'nullable|string';
+        } else {
+            // Jika tidak, maka kategory_tagihan.* (setiap elemen dalam array) tetap harus ada
+            $rules['kategory_tagihan.*'] = 'required';
+        }
+
+        return $rules;
     }
+
 
     public function messages()
     {
@@ -38,7 +50,8 @@ class BillingStoreRequest extends FormRequest
             'bill.min' => 'Kolom tagihan harus minimal :min.',
             // 'date.required' => 'Kolom tanggal jatuh tempo wajib diisi.',
             'date.date' => 'Kolom tanggal jatuh tempo harus tanggal yang valid.',
-            'kategori_tagihan.max' => 'Kolom kategori tagihan tidak boleh lebih dari :max karakter.',
+            'kategori_tagihan.required' => 'Kategori tagihan wajib diisi!',
+
         ];
     }
 }

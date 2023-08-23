@@ -7,15 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Permission\Traits\HasRoles;
 
 class Student extends Model
 {
     use HasFactory, SoftDeletes;
+    use HasRoles;
 
     protected $fillable = [
-        'school_class_id', 'school_major_id', 'student_identification_number',
+        'school_class_id', 'student_identification_number',
         'name', 'email', 'phone_number', 'gender', 'school_year_start',
-        'school_year_end'
+        'school_year_end', 'role'
     ];
 
     /**
@@ -25,7 +27,7 @@ class Student extends Model
      */
     public function school_class(): BelongsTo
     {
-        return $this->belongsTo(SchoolClass::class);
+        return $this->belongsTo(SchoolClass::class, 'school_class_id');
     }
 
     /**
@@ -33,10 +35,10 @@ class Student extends Model
      *
      * @return BelongsTo
      */
-    public function school_major(): BelongsTo
-    {
-        return $this->belongsTo(SchoolMajor::class);
-    }
+    // public function school_major(): BelongsTo
+    // {
+    //     return $this->belongsTo(SchoolMajor::class);
+    // }
 
     /**
      * Get cash transaction relation data.

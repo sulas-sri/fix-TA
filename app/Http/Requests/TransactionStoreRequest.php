@@ -26,7 +26,6 @@ class TransactionStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'type' => 'required|in:income,expense',
             'date' => 'required|date',
             'amount' => 'required|numeric|min:0',
             'description' => 'required|string|max:255',
@@ -42,8 +41,6 @@ class TransactionStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'type.required' => 'Kolom tipe transaksi wajib diisi.',
-            'type.in' => 'Tipe transaksi harus salah satu dari: income, expense.',
             'date.required' => 'Kolom tanggal transaksi wajib diisi.', // Error message for date validation
             'date.date' => 'Kolom tanggal transaksi harus berupa tanggal yang valid.', // Error message for date validation
             'amount.required' => 'Kolom jumlah transaksi wajib diisi.',

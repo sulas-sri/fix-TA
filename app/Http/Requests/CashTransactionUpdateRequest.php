@@ -23,14 +23,27 @@ class CashTransactionUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'student_id' => 'required',
-            'bill' => 'required|numeric|digits_between:3,191',
-            'amount' => 'required|numeric|digits_between:3,191',
-            'date' => 'required|date',
-            'note' => 'max:191'
+        $rules = [
+            // 'student_id' => ['required'],
+            'amount' => ['required', 'integer', 'digits_between:3,191'],
+            'date' => ['required', 'date'],
+            'note' => ['max:191']
         ];
+
+        // Cek apakah "Lain-Lain" dipilih
+        if (in_array('Lain Lain', $this->input('category', []))) {
+            // Jika "Lain-Lain" dipilih, maka category.* (setiap elemen dalam array) menjadi opsional
+            $rules['category.*'] = 'nullable|string';
+        } else {
+            // Jika tidak, maka category.* (setiap elemen dalam array) tetap harus ada
+            $rules['category.*'] = 'required|string';
+        }
+
+        return $rules;
     }
+
+
+
 
     /**
      * Get the error messages for the defined validation rules.
@@ -40,7 +53,7 @@ class CashTransactionUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'student_id.required' => 'Kolom nama pelajar wajib diisi!',
+            // 'student_id.required' => 'Kolom nama pelajar wajib diisi!',
 
             'bill.required' => 'Kolom tagihan wajib diisi!',
             'bill.numeric' => 'Kolom tagihan harus angka!',

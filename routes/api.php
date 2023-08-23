@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\v1\SchoolClassController;
+use App\Http\Controllers\SchoolClassController;
 use App\Http\Controllers\API\v1\SchoolMajorController;
 use App\Http\Controllers\API\v1\AdministratorController;
 use App\Http\Controllers\API\v1\CashTransactionController;
@@ -10,7 +10,7 @@ use App\Http\Controllers\API\v1\LoginController;
 use App\Http\Controllers\API\v1\LogoutController;
 use App\Http\Controllers\API\v1\StudentController;
 use App\Http\Controllers\API\v1\BillingController;
-use App\Models\Headmaster;
+use App\Http\Controllers\RiwayatPembayaranController;
 
 Route::name('api.')->prefix('v1')->group(function () {
     Route::post('/login', [LoginController::class, 'login'])->name('login');
@@ -44,5 +44,10 @@ Route::name('api.')->prefix('v1')->group(function () {
         Route::get('/headmaster/{id}/edit', [HeadmasterController::class, 'edit'])->name('headmaster.edit');
 
         Route::get('/chart', DashboardChartController::class)->name('chart');
+
+        Route::post('/midtrans-callback', [
+            RiwayatPembayaranController::class,
+            'callback',
+        ]);
     });
 });

@@ -27,8 +27,19 @@ class BillingUpdateRequest extends FormRequest
             'student_id' => 'required',
             'bill' => 'required|numeric|min:0',
             'date' => 'required|date',
-            'kategori_tagihan' => 'nullable|string|max:191'
+            // 'kategori_tagihan' => 'nullable|string|max:191'
         ];
+
+        // Cek apakah "Lain-Lain" dipilih
+        if (in_array('Lain Lain', $this->input('kategori_tagihan', []))) {
+            // Jika "Lain-Lain" dipilih, maka category.* (setiap elemen dalam array) menjadi opsional
+            $rules['kategori_tagihan.*'] = 'nullable|string';
+        } else {
+            // Jika tidak, maka category.* (setiap elemen dalam array) tetap harus ada
+            $rules['kategori_tagihan.*'] = 'required|string';
+        }
+
+        return $rules;
     }
 
     /**
@@ -47,7 +58,7 @@ class BillingUpdateRequest extends FormRequest
             'date.required' => 'Kolom tanggal jatuh tempo wajib diisi!',
             'date.date' => 'Kolom tanggal jatuh tempo harus tanggal yang valid!',
 
-            'kategori_tagihan.max' => 'Kolom kategori tagihan maksimal 191 karakter!'
+            // 'kategori_tagihan.max' => 'Kolom kategori tagihan maksimal 191 karakter!'
         ];
     }
 }

@@ -44,7 +44,7 @@
 									<div class="row">
 											<div class="col-md-6">
 													<div class="mb-3">
-															<label for="bill" class="form-label">Jumlah Tagihan</label>
+															<label for="bill" class="form-label">Total Tagihan</label>
 															<input type="number" class="form-control @error('bill') is-invalid @enderror" name="bill" value="{{ old('bill') }}" id="bill" placeholder="Masukkan tagihan..">
 
 															@error('bill')
@@ -55,7 +55,7 @@
 													</div>
 											</div>
 
-											<div class="col-md-6">
+											{{-- <div class="col-md-6">
 												<div class="mb-3">
 														<label for="kategori_tagihan" class="form-label">Kategori Tagihan</label>
 														<select class="form-select @error('kategori_tagihan') is-invalid @enderror" name="kategori_tagihan">
@@ -76,6 +76,68 @@
 																</div>
 														@enderror
 												</div>
+										</div> --}}
+										<div class="row">
+											<div class="col-md-6">
+												<div class="mb-3">
+														<label for="kategory_tagihan" class="form-label">Kategori Tagihan</label>
+														<div>
+															<input type="checkbox" name="kategory_tagihan[]" value="SPP" id="kategory_tagihan_spp"
+																	{{ in_array('SPP', old('kategory_tagihan', [])) ? 'checked' : '' }}>
+															<label for="kategory_tagihan_spp">SPP</label>
+														</div>
+														<div>
+															<input type="checkbox" name="kategory_tagihan[]" value="Tabungan" id="kategory_tagihan_tabungan"
+																	{{ in_array('Tabungan', old('kategory_tagihan', [])) ? 'checked' : '' }}>
+															<label for="kategory_tagihan_tabungan">Tabungan</label>
+														</div>
+														<div>
+															<input type="checkbox" name="kategory_tagihan[]" value="Catering" id="kategory_tagihan_catering"
+																	{{ in_array('Catering', old('kategory_tagihan', [])) ? 'checked' : '' }}>
+															<label for="kategory_tagihan_catering">Catering</label>
+														</div>
+														<div>
+															<input type="checkbox" name="kategory_tagihan[]" value="Antar Jemput" id="kategory_tagihan_antarJemput"
+																	{{ in_array('Antar Jemput', old('kategory_tagihan', [])) ? 'checked' : '' }}>
+															<label for="kategory_tagihan_antarJemput">Antar Jemput</label>
+														</div>
+														<div>
+															<input type="checkbox" name="kategory_tagihan[]" value="Angsuran" id="kategory_tagihan_angsuran"
+																	{{ in_array('Angsuran', old('kategory_tagihan', [])) ? 'checked' : '' }}>
+															<label for="kategory_tagihan_angsuran">Angsuran TA</label>
+														</div>
+														<div>
+															<input type="checkbox" name="kategory_tagihan[]" value="Komite" id="kategory_tagihan_komite"
+																	{{ in_array('Komite', old('kategory_tagihan', [])) ? 'checked' : '' }}>
+															<label for="kategory_tagihan_komite">Komite</label>
+														</div>
+														<div>
+															<input type="checkbox" name="kategory_tagihan[]" value="Buku Mapel" id="kategory_tagihan_bukuMapel"
+																	{{ in_array('Buku Mapel', old('kategory_tagihan', [])) ? 'checked' : '' }}>
+															<label for="kategory_tagihan_bukuMapel">Buku Mapel</label>
+														</div>
+														<div>
+															<input type="checkbox" name="kategory_tagihan[]" value="Ekstrakurikuler" id="kategory_tagihan_ekstrakurikuler"
+																	{{ in_array('Ekstrakurikuler', old('kategory_tagihan', [])) ? 'checked' : '' }}>
+															<label for="kategory_tagihan_ekstrakurikuler">Ekstrakurikuler</label>
+														</div>
+														<div>
+															<input type="checkbox" name="lain_lain_checkbox" id="lain_lain_checkbox">
+															<label for="lain_lain_checkbox">Lain Lain</label>
+															<input type="text" name="lain_lain_value" id="lain_lain_value" value="{{ old('lain_lain_value') }}" placeholder="Input Lain Lain" disabled>
+															<input type="hidden" name="lain_lain_hidden" id="lain_lain_hidden" value="{{ old('lain_lain_hidden') }}">
+														</div>
+
+														@if (old('lain_lain_hidden'))
+														<p>Data Lain-Lain: {{ old('lain_lain_hidden') }}</p>
+														@endif
+														@error('kategory_tagihan')
+																<div class="d-block invalid-feedback">
+																		{{ $message }}
+																</div>
+														@enderror
+												</div>
+										</div>
 										</div>
 
 											{{-- <div class="col-md-6">
@@ -128,3 +190,5 @@
 			</div>
 	</div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

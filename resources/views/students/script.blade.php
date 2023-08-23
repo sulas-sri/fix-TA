@@ -11,46 +11,45 @@
 				{ data: 'student_identification_number', name: 'student_identification_number' },
 				{ data: 'name', name: 'name' },
 				{ data: 'school_class_id', name: 'school_classes.name' },
-				{ data: 'school_major', name: 'school_majors.name' },
 				{ data: 'school_year', name: 'school_year' },
 				{ data: 'action', name: 'action' },
 			]
 		});
 
-		$('#datatable').on('click', '.student-detail', function () {
-			loadingAlert.show();
+		// $('#datatable').on('click', '.student-detail', function () {
+		// 	loadingAlert.show();
 
-			let url = "{{ route('api.student.show', ':param') }}";
-			let id = $(this).data('id');
+		// 	let url = "{{ route('api.student.show', ':param') }}";
+		// 	let id = $(this).data('id');
 
-			url = url.replace(':param', id);
+		// 	url = url.replace(':param', id);
 
-			$('#showStudentModal input').each(function () {
-				$(this).val('Sedang mengambil data..');
-			});
+		// 	$('#showStudentModal :input').each(function () {
+		// 		$(this).val('Sedang mengambil data..');
+		// 	});
 
-			$.ajax({
-				url: url,
-				headers: {
-					'Authorization': 'Bearer ' + localStorage.getItem('token'),
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				success: function (response) {
-					loadingAlert.slideUp();
+		// 	$.ajax({
+		// 		url: url,
+		// 		headers: {
+		// 			'Authorization': 'Bearer ' + localStorage.getItem('token'),
+		// 			'Accept': 'application/json',
+		// 			'Content-Type': 'application/json'
+		// 		},
+		// 		success: function (response) {
+		// 			loadingAlert.slideUp();
+		// 			console.log(response);
 
-					$('#showStudentModal #student_identification_number').val(response.data.student_identification_number);
-					$('#showStudentModal #name').val(response.data.name);
-					$('#showStudentModal #gender').val(response.data.gender);
-					$('#showStudentModal #school_class_id').val(response.data.school_classes.name);
-					$('#showStudentModal #school_major_id').val(response.data.school_majors.name);
-					$('#showStudentModal #email').val(response.data.email);
-					$('#showStudentModal #phone_number').val(response.data.phone_number);
-					$('#showStudentModal #school_year_start').val(response.data.school_year_start);
-					$('#showStudentModal #school_year_end').val(response.data.school_year_end);
-				}
-			});
-		});
+		// 			// $('#showStudentModal #student_identification_number').val(response.data.student_identification_number);
+		// 			$('#showStudentModal #name').val(response.data.name);
+		// 			$('#showStudentModal #gender').val(response.data.gender);
+		// 			$('#showStudentModal #school_class_id').val(response.data.school_classes.name);
+		// 			$('#showStudentModal #email').val(response.data.email);
+		// 			$('#showStudentModal #phone_number').val(response.data.phone_number);
+		// 			$('#showStudentModal #school_year_start').val(response.data.school_year_start);
+		// 			$('#showStudentModal #school_year_end').val(response.data.school_year_end);
+		// 		}
+		// 	});
+		// });
 
 		$('#datatable').on('click', '.student-edit', function () {
 			loadingAlert.show();
@@ -85,7 +84,6 @@
 					$('#editStudentModal #name').val(response.data.name);
 					$('#editStudentModal #gender').val(response.data.gender);
 					$('#editStudentModal #school_class_id').val(response.data.school_class_id).select2();
-					$('#editStudentModal #school_major_id').val(response.data.school_major_id).select2();
 					$('#editStudentModal #email').val(response.data.email);
 					$('#editStudentModal #phone_number').val(response.data.phone_number);
 					$('#editStudentModal #school_year_start').val(response.data.school_year_start);

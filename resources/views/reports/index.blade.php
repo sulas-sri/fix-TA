@@ -1,91 +1,7 @@
-@extends('layouts.main', ['title' => 'Laporan', 'page_heading' => 'Data Laporan'])
+@extends('layouts.main', ['title' => 'Laporan', 'page_heading' => 'Data Rekapitulasi'])
 
 @section('content')
 <section>
-	<div class="row">
-		<div class="col-6 col-lg-6 col-md-6">
-			<div class="card">
-				<div class="card-body px-3 py-4-4">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="stats-icon">
-								<i class="iconly-boldChart"></i>
-							</div>
-						</div>
-						<div class="col-md-8">
-							<h6 class="text-muted font-semibold">Total Hari Ini</h6>
-							<h6 class="font-extrabold mb-0">
-								{{ $sum['thisDay'] }}
-							</h6>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-6 col-lg-6 col-md-6">
-			<div class="card">
-				<div class="card-body px-3 py-4-4">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="stats-icon">
-								<i class="iconly-boldChart"></i>
-							</div>
-						</div>
-						<div class="col-md-8">
-							<h6 class="text-muted font-semibold">Total Minggu Ini</h6>
-							<h6 class="font-extrabold mb-0">
-								{{ $sum['thisWeek'] }}
-							</h6>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-6 col-lg-6 col-md-6">
-			<div class="card">
-				<div class="card-body px-3 py-4-4">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="stats-icon">
-								<i class="iconly-boldChart"></i>
-							</div>
-						</div>
-						<div class="col-md-8">
-							<h6 class="text-muted font-semibold">Total Bulan Ini</h6>
-							<h6 class="font-extrabold mb-0">
-								{{ $sum['thisMonth'] }}
-							</h6>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-6 col-lg-6 col-md-6">
-			<div class="card">
-				<div class="card-body px-3 py-4-4">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="stats-icon">
-								<i class="iconly-boldChart"></i>
-							</div>
-						</div>
-						<div class="col-md-8">
-							<h6 class="text-muted font-semibold">Total Tahun Ini</h6>
-							<h6 class="font-extrabold mb-0">
-								{{ $sum['thisYear'] }}
-							</h6>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<div class="row">
 		<div class="card px-3 py-3">
 			<form action="" method="GET">
@@ -118,10 +34,10 @@
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">Nama Pelajar</th>
 							<th scope="col">Tanggal</th>
-							<th scope="col">Nominal Bayar</th>
-							<th scope="col">Pencatat</th>
+							<th scope="col">Keterangan</th>
+							<th scope="col">Pemasukan</th>
+							<th scope="col">Pengeluaran</th>
 						</tr>
 					</thead>
 					<tbody>

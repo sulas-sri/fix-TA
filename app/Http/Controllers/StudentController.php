@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StudentStoreRequest;
 use App\Http\Requests\StudentUpdateRequest;
 use App\Models\SchoolClass;
-use App\Models\SchoolMajor;
 use App\Models\Student;
 use App\Repositories\StudentRepository;
 use Illuminate\Http\JsonResponse;
@@ -26,11 +25,10 @@ class StudentController extends Controller
      */
     public function index(): View|JsonResponse
     {
-        $students = Student::with('school_class:id,name', 'school_major:id,name,abbreviated_word')
+        $students = Student::with('school_class:id,name')
             ->select(
                 'id',
                 'school_class_id',
-                'school_major_id',
                 'student_identification_number',
                 'name',
                 'school_year_start',
@@ -46,23 +44,19 @@ class StudentController extends Controller
                     'school_class_id',
                     fn ($model) => $model->school_class->name
                 )
-                ->addColumn('school_major', 'students.datatable.school_major')
                 ->addColumn('school_year', 'students.datatable.school_year')
                 ->addColumn('action', 'students.datatable.action')
-                ->rawColumns(['action', 'school_major', 'school_year'])
+                ->rawColumns(['action', 'school_year'])
                 ->toJson();
         }
 
         $schoolClasses = SchoolClass::select('id', 'name')->orderBy('name')->get();
-        $schoolMajors = SchoolMajor::select('id', 'name', 'abbreviated_word')->orderBy('name')->get();
-
         $studentTrashedCount = Student::onlyTrashed()->count();
         $maleStudentCount = $this->studentRepository->countStudentGender(1);
         $femaleStudentCount = $this->studentRepository->countStudentGender(2);
 
         return view('students.index', [
             'schoolClasses' => $schoolClasses,
-            'schoolMajors' => $schoolMajors,
             'studentTrashedCount' => $studentTrashedCount,
             'maleStudentCount' => $maleStudentCount,
             'femaleStudentCount' => $femaleStudentCount,
@@ -96,6 +90,7 @@ class StudentController extends Controller
         return redirect()->route('students.index')->with('success', 'Data berhasil diubah!');
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
@@ -108,4 +103,20 @@ class StudentController extends Controller
 
         return redirect()->route('students.index')->with('success', 'Data berhasil dihapus!');
     }
+
+    public function show($id)
+    {
+        $student = Student::find($id);
+
+        return view ('students.show', compact('student'));
+    }
+
+    public function edit($id)
+    {
+        $student = Student::find($id);
+        $class = SchoolClass::all();
+        return view('students.edit', compact('student', 'class'));
+    }
+
+
 }

@@ -3,60 +3,60 @@
 @section('content')
     <section class="row">
         {{-- Start Statistics --}}
-        <div class="col-6 col-lg-6 col-md-6">
-            {{-- <div class="card"> --}}
-            {{-- <div class="card-body px-3 py-4-4">
+        {{-- <div class="col-6 col-lg-6 col-md-6">
+            <div class="card">
+							<div class="card-body px-3 py-4-4">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="stats-icon">
                                 <i class="iconly-boldChart"></i>
                             </div>
                         </div>
-                        {{-- <div class="col-md-8">
+                        <div class="col-md-8">
                             <h6 class="text-muted font-semibold">Total Bulan Ini</h6>
                             <h6 class="font-extrabold mb-0">{{ $data['totals']['thisMonth'] }}</h6>
-                        </div> --}}
-            {{-- </div>
-                </div> --}}
-            {{-- </div> --}}
+                        </div>
+            </div>
+                </div>
+            </div>
         </div>
         <div class="col-6 col-lg-6 col-md-6">
-            {{-- <div class="card"> --}}
-            {{-- <div class="card-body px-3 py-4-4">
+            <div class="card">
+            <div class="card-body px-3 py-4-4">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="stats-icon">
                                 <i class="iconly-boldChart"></i>
                             </div>
                         </div>
-                        {{-- <div class="col-md-8">
+                        <div class="col-md-8">
                             <h6 class="text-muted font-semibold">Total Tahun Ini</h6>
                             <h6 class="font-extrabold mb-0">{{ $data['totals']['thisYear'] }}</h6>
-                        </div> --}}
-            {{-- </div>
-                </div> --}}
-            {{-- </div> --}}
-        </div>
+                        </div>
+            </div>
+                </div>
+            </div>
+        </div> --}}
 
         <div class="col-6 col-lg-6 col-md-6">
-            {{-- <div class="card"> --}}
-            {{-- <div class="card-body px-3 py-4-4">
+            <div class="card">
+            <div class="card-body px-3 py-4-4">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="stats-icon green">
                                 <i class="iconly-boldActivity"></i>
                             </div>
                         </div>
-                        {{-- <div class="col-md-8">
+                        <div class="col-md-8">
                             <h6 class="text-muted font-semibold">Sudah Membayar Minggu Ini</h6>
                             <h6 class="font-extrabold mb-0">{{ $data['studentCountWho']['paidThisWeek'] }}</h6>
-                        </div> --}}
-            {{-- </div>
-                </div> --}}
-            {{-- </div> --}}
+                        </div>
+            </div>
+                </div>
+            </div>
         </div>
 
-        {{-- <div class="col-6 col-lg-6 col-md-6">
+        <div class="col-6 col-lg-6 col-md-6">
             <div class="card">
                 <div class="card-body px-3 py-4-4">
                     <div class="row">
@@ -65,16 +65,16 @@
                                 <i class="iconly-boldActivity"></i>
                             </div>
                         </div>
-                        {{-- <div class="col-md-8">
+                        <div class="col-md-8">
                             <h6 class="text-muted font-semibold">Belum Membayar Minggu Ini</h6>
                             <h6 class="font-extrabold mb-0">{{ $data['studentCountWho']['notPaidThisWeek'] }}</h6>
-                        </div> --}}
-        {{-- </div>
+                        </div>
+        </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
 
-        {{-- <div class="col-12 col-lg-12 col-md-12">
+        <div class="col-12 col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h4>Belum Membayar Minggu Ini</h4>
@@ -113,7 +113,7 @@
                                 class="bi bi-emoji-laughing"></i></p>
                     </div>
                 @endif
-            </div> --}}
+            </div>
         </div>
         {{-- End of Statistics --}}
 
@@ -121,9 +121,9 @@
         <div class="col card px-3 py-3">
             <div class="d-flex justify-content-end pb-3">
                 <div class="btn-group d-gap gap-2">
-                    <a href="{{ route('billings.export') }}" class="btn btn-success">
+                    {{-- <a href="{{ route('billings.export') }}" class="btn btn-success">
                         <i class="bi bi-file-earmark-excel-fill"></i> Export Excel
-                    </a>
+                    </a> --}}
                     {{-- <a href="{{ route('billings.history') }}" class="btn btn-secondary">
                         <span class="badge">{{ $billingTrashedCount }}</span> Histori Data Tagihan
                     </a> --}}
@@ -143,7 +143,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Nama Siswa</th>
                             <th scope="col">ID Telegram</th>
-                            <th scope="col">Jumlah Tagihan</th>
+                            <th scope="col">Total Tagihan</th>
                             <th scope="col">Kategori Tagihan</th>
                             <th scope="col">Jatuh Tempo</th>
                             <th scope="col">Aksi</th>

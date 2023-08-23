@@ -26,7 +26,6 @@ class TransactionUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'type' => 'required|in:income,expense',
             'amount' => 'required|numeric|min:0',
             'description' => 'required|string|max:255',
             // Add other validation rules as needed
@@ -41,8 +40,6 @@ class TransactionUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'type.required' => 'Kolom tipe transaksi wajib diisi.',
-            'type.in' => 'Tipe transaksi harus salah satu dari: income, expense.',
             'amount.required' => 'Kolom jumlah transaksi wajib diisi.',
             'amount.numeric' => 'Kolom jumlah transaksi harus berupa angka.',
             'amount.min' => 'Kolom jumlah transaksi harus minimal :min.',

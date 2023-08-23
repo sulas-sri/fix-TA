@@ -15,7 +15,6 @@ class CreateCashTransactionsTable extends Migration
     {
         Schema::create('cash_transactions', function (Blueprint $table) {
             $table->id();
-            $table->id_transaksi();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('student_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();;
             $table->bigInteger('amount');
